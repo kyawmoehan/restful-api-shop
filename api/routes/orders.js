@@ -7,6 +7,7 @@ const router = express.Router();
 router.get('/', (req, res) => {
     Order.find({})
         .select('_id product quantity')
+        .populate('product', 'name')
         .exec()
         .then(docs => {
             res.status(200).json(docs.map(doc => {
@@ -14,10 +15,6 @@ router.get('/', (req, res) => {
                     _id: doc._id,
                     product: doc.product,
                     quantity: doc.quantity,
-                    productDetails: {
-                        type: 'GET',
-                        url: `http://${req.get('host')}/products/${doc.product}`
-                    },
                     request: {
                         type: 'GET',
                         url: `http://${req.get('host')}/orders/${doc._id}`
@@ -70,6 +67,7 @@ router.post('/', (req, res) => {
 router.get('/:orderId', (req, res) => {
     Order.findById(req.params.orderId)
         .select('_id product quantity')
+        .populate('product')
         .exec()
         .then(order => {
             if(!order) {

@@ -16,6 +16,9 @@ mongoose.connect('mongodb+srv://restapi_shop:restapi_12345@restapi-shop-mfjar.mo
 // logging req
 app.use(morgan('dev')); 
 
+// public uploads folder    
+app.use('/uploads',express.static('uploads'));
+
 // handle json
 app.use(express.urlencoded({extended: false}));
 app.use(express.json()); 
