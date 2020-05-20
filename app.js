@@ -3,6 +3,7 @@ const morgan = require('morgan');
 const mongoose = require('mongoose');
 const productRoutes = require('./api/routes/products');
 const orderRoutes = require('./api/routes/orders');
+const userRoutes = require('./api/routes/user');
 
 const app = new express();
 const PORT = process.env.PORT || 3000;
@@ -39,6 +40,9 @@ app.use('/products', productRoutes);
 
 // order route
 app.use('/orders', orderRoutes);
+
+// user route
+app.use('/user', userRoutes);
 
 // error handling
 app.use((req, res, next) => {
