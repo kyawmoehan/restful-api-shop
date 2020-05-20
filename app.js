@@ -9,7 +9,7 @@ const app = new express();
 const PORT = process.env.PORT || 3000;
 
 // connect mongodb
-mongoose.connect('mongodb+srv://restapi_shop:restapi_12345@restapi-shop-mfjar.mongodb.net/test?retryWrites=true&w=majority', {
+mongoose.connect('mongodb+srv://restapi_shop:<password>@restapi-shop-mfjar.mongodb.net/test?retryWrites=true&w=majority', {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
